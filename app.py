@@ -10,6 +10,8 @@ from predict import predict_digit
 from utils.preprocessing import get_preprocessing_steps
 
 
+
+
 st.set_page_config(
     page_title="Digit Recognition System",
     page_icon="🔢",
@@ -57,6 +59,9 @@ left_col, right_col = st.columns([1, 1], gap="large")
 
 image = None
 
+if "canvas_key" not in st.session_state:
+    st.session_state.canvas_key = 0
+
 
 with left_col:
     st.markdown(
@@ -86,8 +91,14 @@ with left_col:
             height=320,
             width=320,
             drawing_mode="freedraw",
-            key="canvas",
+            display_toolbar=False,
+            update_streamlit=True,
+            key=f"canvas_{st.session_state.canvas_key}",
         )
+
+        if st.button("Clear Canvas", use_container_width=True):
+            st.session_state.canvas_key += 1
+            st.rerun()
 
         if canvas_result.image_data is not None:
             image_array = canvas_result.image_data.astype(np.uint8)
