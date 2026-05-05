@@ -80,11 +80,11 @@ with left_col:
     if input_method == "Draw digit":
         canvas_result = st_canvas(
             fill_color="white",
-            stroke_width=20,
+            stroke_width=18,
             stroke_color="black",
             background_color="white",
-            height=300,
-            width=300,
+            height=320,
+            width=320,
             drawing_mode="freedraw",
             key="canvas",
         )
