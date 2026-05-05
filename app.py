@@ -29,13 +29,15 @@ def show_top_3_chart(top_3):
     digits = [str(item["digit"]) for item in top_3]
     confidence = [item["confidence"] for item in top_3]
 
-    fig, ax = plt.subplots(figsize=(4.5, 3))
+    fig, ax = plt.subplots(figsize=(4.8, 3.2))
     ax.bar(digits, confidence)
     ax.set_xlabel("Digit")
     ax.set_ylabel("Confidence (%)")
     ax.set_ylim(0, 100)
-    ax.set_title("Prediction Confidence")
-    st.pyplot(fig, use_container_width=True)
+    ax.set_title("Top Prediction Confidence")
+    fig.tight_layout()
+
+    st.pyplot(fig)
 
 
 st.markdown(
@@ -99,7 +101,7 @@ with left_col:
 
         if uploaded_file is not None:
             image = Image.open(uploaded_file).convert("RGB")
-            st.image(image, caption="Uploaded image", use_container_width=True)
+            st.image(image, caption="Uploaded image", use_column_width=True)
 
 
 with right_col:
@@ -154,7 +156,7 @@ with right_col:
             )
 
         st.markdown(
-            '<div class="section-title">Top Predictions</div>',
+            '<div class="section-title">Top 3 Predictions</div>',
             unsafe_allow_html=True
         )
 
@@ -180,16 +182,16 @@ with right_col:
         p1, p2, p3, p4 = st.columns(4)
 
         with p1:
-            st.image(steps["original"], caption="Original", use_container_width=True)
+            st.image(steps["original"], caption="Original", use_column_width=True)
 
         with p2:
-            st.image(steps["grayscale"], caption="Grayscale", use_container_width=True)
+            st.image(steps["grayscale"], caption="Grayscale", use_column_width=True)
 
         with p3:
-            st.image(steps["thresholded"], caption="Thresholded", use_container_width=True)
+            st.image(steps["thresholded"], caption="Thresholded", use_column_width=True)
 
         with p4:
-            st.image(steps["final"], caption="Final 28×28", use_container_width=True)
+            st.image(steps["final"], caption="Final 28×28", use_column_width=True)
 
 
 st.markdown(

@@ -1,4 +1,4 @@
-
+# train_model.py - Train a CNN model for handwritten digit recognition using the MNIST dataset
 import os
 import tensorflow as tf
 from tensorflow.keras import layers, models

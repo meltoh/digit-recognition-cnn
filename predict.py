@@ -1,3 +1,4 @@
+# predict.py - Predict handwritten digits using a trained CNN model
 import numpy as np
 import tensorflow as tf
 
