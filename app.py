@@ -83,13 +83,15 @@ with left_col:
     )
 
     if input_method == "Draw digit":
+        st.markdown('<div class="canvas-title">Drawing Pad</div>', unsafe_allow_html=True)
+
         canvas_result = st_canvas(
             fill_color="white",
             stroke_width=18,
             stroke_color="black",
             background_color="white",
-            height=320,
-            width=320,
+            height=420,
+            width=520,
             drawing_mode="freedraw",
             display_toolbar=False,
             update_streamlit=True,

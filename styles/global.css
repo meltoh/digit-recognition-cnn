@@ -169,3 +169,26 @@
     background: #1d4ed8 !important;
     border-color: #1d4ed8 !important;
 }
+
+
+.canvas-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827 !important;
+    margin-bottom: 10px;
+}
+
+/* Canvas component container */
+iframe {
+    background: #ffffff !important;
+    border-radius: 18px !important;
+}
+
+/* Make canvas area feel like a clean drawing pad */
+div[data-testid="stIFrame"] {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 18px !important;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08) !important;
+    padding: 10px !important;
+}
