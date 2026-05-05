@@ -26,18 +26,18 @@ load_css("styles/global.css")
 
 
 def show_top_3_chart(top_3):
-    digits = [str(item["digit"]) for item in top_3]
-    confidence = [item["confidence"] for item in top_3]
-
-    fig, ax = plt.subplots(figsize=(4.8, 3.2))
-    ax.bar(digits, confidence)
-    ax.set_xlabel("Digit")
-    ax.set_ylabel("Confidence (%)")
-    ax.set_ylim(0, 100)
-    ax.set_title("Top Prediction Confidence")
-    fig.tight_layout()
-
-    st.pyplot(fig)
+    for item in top_3:
+        st.markdown(
+            f"""
+            <div class="metric-row">
+                {item["digit"]} ({item["word"]}) — {item["confidence"]:.2f}%
+                <div class="bar-wrap">
+                    <div class="bar-fill" style="width: {item["confidence"]}%;"></div>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 
 st.markdown(
@@ -159,16 +159,6 @@ with right_col:
             '<div class="section-title">Top 3 Predictions</div>',
             unsafe_allow_html=True
         )
-
-        for item in result["top_3"]:
-            st.markdown(
-                f"""
-                <div class="metric-row">
-                    {item["digit"]} ({item["word"]}) — {item["confidence"]:.2f}%
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
 
         show_top_3_chart(result["top_3"])
 
