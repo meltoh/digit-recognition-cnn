@@ -85,6 +85,8 @@ with left_col:
     if input_method == "Draw digit":
         st.markdown('<div class="canvas-title">Drawing Pad</div>', unsafe_allow_html=True)
 
+        st.markdown('<div style="position: relative">', unsafe_allow_html=True)
+
         canvas_result = st_canvas(
             fill_color="white",
             stroke_width=18,
@@ -97,6 +99,9 @@ with left_col:
             update_streamlit=True,
             key=f"canvas_{st.session_state.canvas_key}",
         )
+
+        st.markdown('<div class="canvas-guide"></div></div>', unsafe_allow_html=True)
+
 
         if st.button("Clear Canvas", use_container_width=True):
             st.session_state.canvas_key += 1
@@ -149,27 +154,15 @@ with right_col:
             unsafe_allow_html=True
         )
 
-        if result["confidence"] < 70:
-            st.markdown(
-                """
-                <div class="warning-box">
-                    Low confidence prediction. The input may be unclear or different from the training style.
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+        if result["confidence"] > 95:
+            msg = "Very confident Prediction!"
+        elif result["confidence"] > 80:
+            msg = "Good confidence"
         else:
-            st.markdown(
-                """
-                <div class="success-box">
-                    Prediction confidence is within an acceptable range.
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
+            msg = "Low confidence, try clearer input."
+        
         st.markdown(
-            '<div class="section-title">Top 3 Predictions</div>',
+            f'<div class="success-box">{msg}</div>',
             unsafe_allow_html=True
         )
 

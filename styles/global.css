@@ -178,6 +178,17 @@
     margin-bottom: 10px;
 }
 
+.canvas-guide {
+    position: absolute;
+    border: 2px dashed #e5e7eb;
+    border-radius: 12px;
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    pointer-events: none;
+}
+
 /* Canvas component container */
 iframe {
     background: #ffffff !important;
